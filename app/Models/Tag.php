@@ -7,10 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    /** @use HasFactory<\Database\Factories\TagFactory> */
     use HasFactory;
 
-    public function posts(){
+    protected $fillable = ['name'];
+
+    public $timestamps = false;
+
+    public function posts()
+    {
         return $this->belongsToMany(Post::class);
     }
 }

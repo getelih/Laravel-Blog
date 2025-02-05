@@ -61,10 +61,17 @@ class PublicController extends Controller
         return redirect()->back();
     }
 
-    public function tag(Tag $tag){
+    public function tag(Tag $tag)
+    {
         $posts = $tag->posts()->with('user')->withCount('comments')->latest()->paginate(16);
-        return view('index', compact('posts'));
+
+        if (!$posts) {
+            abort(404, 'No posts found for this tag.');
+        }
+
+        return view('index', compact('posts', 'tag'));
     }
+
 
     public function follow(User $user){
         $follow = Follow::where('follower_id', Auth::id())->where('followee_id', $user->id)->first();
