@@ -11,7 +11,7 @@
             @endif
 
             {{-- Current Page Number --}}
-            <button class="join-item btn btn-secondary" disabled>{{ $paginator->currentPage() }}</button>
+            <button class="join-item btn btn-secondary" enabled>{{ $paginator->currentPage() }}</button>
 
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
